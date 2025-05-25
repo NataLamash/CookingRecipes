@@ -1,15 +1,14 @@
-﻿namespace CookingRecipes.Models.Dtos
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CookingRecipes.Models.Dtos
 {
     public class RecipeIngredientInputDto
     {
-        /// <summary>
-        /// Ідентифікатор інгредієнту
-        /// </summary>
+        [Required]
         public int IngredientId { get; set; }
 
-        /// <summary>
-        /// Вага інгредієнту в грамах
-        /// </summary>
-        public decimal WeightInGrams { get; set; }
+        [Required]
+        [Range(0.01, (double)decimal.MaxValue)] // Вага має бути позитивною
+        public decimal WeightInGrams { get; set; } // Тип decimal для ваги
     }
 }

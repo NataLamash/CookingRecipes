@@ -1,35 +1,774 @@
-﻿
-/* Загальні стилі */
+﻿@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-main: #FFFFFF;
+    --bg-card: #FFFDF5;
+    --bg-card-alt: #F0F9F0;
+    --text-dark: #333333;
+    --text-headings: #212529;
+    --text-light: #FFFFFF;
+    --text-medium: #5A6268;
+    --text-muted-custom-color: #757575;
+    --accent-green: #6DBA75;
+    --accent-green-rgb: 109, 186, 117; /* Для rgba */
+    --accent-green-darker: #58A764;
+    --accent-orange: #FF8C69;
+    --accent-orange-rgb: 255, 140, 105; /* Для rgba */
+    --accent-orange-darker: #F27853;
+    --accent-yellow-light: #FFF5E1;
+    --accent-blue: #7BA4D5;
+    --accent-blue-light: #E6F0FF;
+    --accent-pink-light: #FFE6F0;
+    --border-color: #EAEAEA;
+    --box-shadow-light: 0 3px 10px rgba(0,0,0,0.05);
+    --box-shadow-medium: 0 5px 15px rgba(0,0,0,0.07);
+    --font-logo: 'Lilita One', cursive;
+    --font-main: 'Quicksand', sans-serif;
+}
+
 body {
-    background-color: #f8f9fa; /* світло-сірий фон */
+    font-family: var(--font-main);
+    color: var(--text-dark);
+    background-color: var(--bg-main);
+    min-height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    overflow-x: hidden; /* Щоб декоративні елементи не створювали прокрутку */
 }
 
-/* Банер */
-header {
-    background-color: #fff;
-    padding: 1rem 0;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.page-container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-/* Стилі для головних карток на index.html */
-.card-main {
+button, a.btn, .card-main-custom, .recipe-card-custom, .accordion-button,
+.action-icon, .btn-back-link, .card-item-custom .btn-edit,
+.card-item-custom .btn-del, .btn-remove-ingredient {
     cursor: pointer;
-    transition: transform .2s, box-shadow .2s;
 }
 
-    .card-main:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-main);
+    color: var(--text-headings);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.section-title-custom {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-headings);
+}
+
+p, label, .list-group-item, .instructions-text, .form-check-label {
+    color: var(--text-medium) !important;
+    font-size: 0.95rem;
+}
+
+.form-label {
+    color: var(--text-headings) !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+header.banner-custom {
+    padding: 1rem 0 1.5rem 0;
+    margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+.site-logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1.site-logo-text {
+    font-family: var(--font-logo);
+    font-size: 2.5rem;
+    color: var(--accent-green);
+    margin: 0;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.site-logo-heart {
+    font-size: 1.6rem;
+    color: var(--accent-orange);
+    margin-left: 0.3em;
+    transform: translateY(-0.05em) rotate(-10deg);
+}
+
+.page-controls-nav {
+    background-color: var(--text-light);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+}
+
+    .page-controls-nav .controls-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
     }
 
-/* Відступи для форм додавання */
-#form-add,
-#ingredient-form {
-    margin-bottom: 1.5rem;
+    .page-controls-nav .btn-back-link {
+        color: var(--accent-green);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+        .page-controls-nav .btn-back-link i {
+            margin-right: 0.5rem;
+        }
+
+        .page-controls-nav .btn-back-link:hover {
+            background-color: rgba(var(--accent-green-rgb), 0.1);
+            color: var(--accent-green-darker);
+        }
+
+    .page-controls-nav .search-input-wrapper {
+        flex-grow: 1;
+        min-width: 250px;
+    }
+
+    .page-controls-nav .form-control {
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        font-size: 0.9rem;
+    }
+
+        .page-controls-nav .form-control:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 0.2rem rgba(var(--accent-green-rgb), 0.2);
+        }
+
+    .page-controls-nav .btn-add-action {
+        background-color: var(--accent-green);
+        color: var(--text-light);
+        border: none;
+        border-radius: 6px;
+        padding: 0.5rem 1.2rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+        .page-controls-nav .btn-add-action:hover {
+            background-color: var(--accent-green-darker);
+        }
+
+.card-main-custom {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow-light);
+    padding: 1.5rem;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
 }
 
-/* Утиліта для приховання/показу блоків */
+    .card-main-custom:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--box-shadow-medium);
+        border-color: var(--accent-green);
+    }
+
+    .card-main-custom .card-title {
+        font-size: 1.3rem;
+        color: var(--text-headings);
+        font-weight: 600;
+        margin-top: 0.8rem;
+    }
+
+    .card-main-custom .icon-placeholder i {
+        font-size: 2.5rem;
+        color: var(--accent-green);
+        margin-bottom: 0.8rem;
+    }
+
+#card-ingredients .icon-placeholder i::before {
+    content: "\F23F"; /* bi-card-checklist */
+}
+
+
+.btn-primary-custom {
+    background-color: var(--accent-orange);
+    border: none;
+    color: var(--text-light);
+    font-family: var(--font-main);
+    font-weight: 700;
+    padding: 0.7rem 1.8rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    box-shadow: 0 3px 8px rgba(var(--accent-orange-rgb),0.3);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .btn-primary-custom:hover {
+        background-color: var(--accent-orange-darker);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(var(--accent-orange-rgb),0.4);
+    }
+
+.accordion-item.miss-matcha-style {
+    background-color: var(--bg-card-alt) !important;
+    border-radius: 10px !important;
+    box-shadow: var(--box-shadow-light) !important;
+    border: 1px solid var(--border-color) !important;
+    margin-bottom: 2rem;
+}
+
+    .accordion-item.miss-matcha-style .accordion-header .accordion-button {
+        background-color: var(--bg-card-alt) !important;
+        color: var(--text-headings) !important;
+        font-family: var(--font-main);
+        font-weight: 600;
+        font-size: 1.1rem;
+        border-bottom: 1px solid var(--border-color) !important;
+        border-radius: 9px 9px 0 0 !important;
+        padding: 0.9rem 1.25rem;
+    }
+
+        .accordion-item.miss-matcha-style .accordion-header .accordion-button:not(.collapsed) {
+            box-shadow: none !important;
+            background-color: var(--accent-green) !important;
+            color: var(--text-light) !important;
+        }
+
+        .accordion-item.miss-matcha-style .accordion-header .accordion-button:focus {
+            box-shadow: 0 0 0 0.2rem rgba(var(--accent-green-rgb), 0.2) !important;
+        }
+
+        .accordion-item.miss-matcha-style .accordion-header .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333333'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .accordion-item.miss-matcha-style .accordion-header .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFFFF'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+    .accordion-item.miss-matcha-style .accordion-body {
+        background-color: var(--bg-card-alt) !important;
+        padding: 1.25rem;
+        border-radius: 0 0 9px 9px;
+    }
+
+.form-check-input {
+    border-color: #ced4da !important;
+}
+
+    .form-check-input:checked {
+        background-color: var(--accent-green) !important;
+        border-color: var(--accent-green) !important;
+    }
+
+.form-control, .form-select {
+    background-color: var(--text-light) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-dark) !important;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--accent-green) !important;
+        box-shadow: 0 0 0 0.2rem rgba(var(--accent-green-rgb), 0.2) !important;
+    }
+
+.recipe-card-custom {
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: var(--box-shadow-light);
+    border: 1px solid transparent;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .recipe-card-custom:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--box-shadow-medium);
+        border-color: var(--accent-orange);
+    }
+
+    .recipe-card-custom .card-img-top {
+        height: 170px;
+        object-fit: cover;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .recipe-card-custom .card-body {
+        padding: 1rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .recipe-card-custom .card-title {
+        color: var(--text-headings);
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 0.4rem;
+        line-height: 1.3;
+    }
+
+    .recipe-card-custom .card-recipe-info {
+        font-size: 0.8rem;
+        color: var(--text-muted-custom-color);
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+        .recipe-card-custom .card-recipe-info span {
+            margin-right: 8px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .recipe-card-custom .card-recipe-info i {
+            margin-right: 4px;
+            color: var(--accent-orange);
+        }
+
+    .recipe-card-custom .badges-container {
+        margin-bottom: 0.5rem;
+        min-height: 25px;
+    }
+
+    .recipe-card-custom .badge {
+        font-size: 0.75rem;
+        padding: 0.35em 0.7em;
+        font-weight: 500;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+        .recipe-card-custom .badge i {
+            margin-right: 0.3em;
+        }
+
+        .recipe-card-custom .badge.bg-success-custom,
+        .recipe-detail-card .badge.bg-success-custom {
+            background-color: var(--accent-green) !important;
+            color: var(--text-light) !important;
+        }
+
+        .recipe-card-custom .badge.bg-info-custom,
+        .recipe-detail-card .badge.bg-info-custom {
+            background-color: var(--accent-blue) !important;
+            color: var(--text-light) !important;
+        }
+
+.card-img-top-placeholder {
+    background-color: #f0f0f0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .card-img-top-placeholder::before {
+        font-family: "Bootstrap-Icons";
+        content: "\F470";
+        font-size: 3rem;
+        color: var(--accent-orange);
+    }
+
+.recipe-card-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 0.75rem;
+}
+
+    .recipe-card-actions .action-icon {
+        font-size: 1.1rem;
+        color: var(--accent-orange);
+        transition: color 0.2s ease;
+        margin-left: 0.75rem;
+    }
+
+        .recipe-card-actions .action-icon:hover {
+            color: var(--accent-orange-darker);
+        }
+
+.btn-outline-green-custom {
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+}
+
+    .btn-outline-green-custom:hover {
+        background-color: var(--accent-green);
+        color: var(--text-light);
+    }
+
+.btn-outline-pink-custom {
+    color: var(--accent-orange);
+    border-color: var(--accent-orange);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+}
+
+    .btn-outline-pink-custom:hover {
+        background-color: var(--accent-orange);
+        color: var(--text-light);
+    }
+
+.btn-success-custom {
+    background-color: var(--accent-green);
+    border-color: var(--accent-green);
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+    .btn-success-custom:hover {
+        background-color: var(--accent-green-darker);
+    }
+
+.btn-secondary-custom {
+    background-color: #E0E0E0;
+    border-color: #D0D0D0;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+    .btn-secondary-custom:hover {
+        background-color: #C0C0C0;
+    }
+
+#recipe-form .btn.btn-primary, #recipe-form-edit .btn.btn-primary {
+    background-color: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: var(--text-light);
+    padding: 0.7rem 1.8rem;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    font-weight: 700;
+    border-radius: 25px;
+}
+
+    #recipe-form .btn.btn-primary:hover, #recipe-form-edit .btn.btn-primary:hover {
+        background-color: var(--accent-orange-darker);
+    }
+
+#form-add {
+    background: var(--bg-card-alt);
+    padding: 1.25rem;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-light);
+    border: 1px solid var(--border-color);
+}
+
+    #form-add .btn-primary {
+        background-color: var(--accent-green);
+        border-color: var(--accent-green);
+        font-family: var(--font-main);
+        font-weight: 600;
+    }
+
+        #form-add .btn-primary:hover {
+            background-color: var(--accent-green-darker);
+        }
+
+.recipe-detail-card {
+    background: var(--text-light);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--box-shadow-medium);
+    border: 1px solid var(--border-color);
+}
+
+.recipe-detail-image {
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    max-height: 350px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.recipe-detail-image-placeholder {
+    height: 250px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    color: var(--text-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-main);
+    font-weight: 600;
+}
+
+.details-section-title {
+    font-size: 1.4rem;
+    color: var(--text-headings);
+    font-weight: 700;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 2px solid var(--accent-green);
+    padding-bottom: 0.4rem;
+    display: inline-block;
+}
+
+    .details-section-title i {
+        color: var(--accent-green);
+        margin-right: 0.4rem;
+    }
+
+.list-group-item-custom {
+    background-color: transparent !important;
+    border: none !important;
+    color: var(--text-medium) !important;
+    padding: 0.3rem 0;
+    font-size: 0.95rem;
+}
+
+.recipe-stats-block {
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.recipe-stat {
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+
+    .recipe-stat i {
+        color: var(--accent-green);
+        margin-right: 0.6rem;
+        font-size: 1.1rem;
+        vertical-align: middle;
+    }
+
+    .recipe-stat strong {
+        color: var(--text-headings);
+        font-weight: 600;
+        margin-right: 0.3rem;
+        vertical-align: middle;
+    }
+
+    .recipe-stat .badge {
+        vertical-align: middle;
+    }
+
+.instructions-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    text-align: left; /* Змінено на left для стандартного читання */
+}
+
+.recipe-categories-tags .badge {
+    font-size: 0.8rem;
+    padding: 0.4em 0.8em;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+    .recipe-categories-tags .badge.bg-cat-1 {
+        background-color: var(--accent-yellow-light) !important;
+        color: var(--text-dark) !important;
+        border: 1px solid hsl(from var(--accent-yellow-light) h s calc(l - 15%));
+    }
+
+    .recipe-categories-tags .badge.bg-cat-2 {
+        background-color: var(--accent-blue-light) !important;
+        color: var(--text-dark) !important;
+        border: 1px solid hsl(from var(--accent-blue-light) h s calc(l - 15%));
+    }
+
+    .recipe-categories-tags .badge.bg-cat-3 {
+        background-color: var(--accent-pink-light) !important;
+        color: var(--text-dark) !important;
+        border: 1px solid hsl(from var(--accent-pink-light) h s calc(l - 15%));
+    }
+
+    .recipe-categories-tags .badge.bg-cat-4 {
+        background-color: #E9F5E9 !important;
+        color: var(--text-dark) !important;
+        border: 1px solid #C8E6C9;
+    }
+
+    .recipe-categories-tags .badge.bg-cat-default {
+        background-color: #F5F5F5 !important;
+        color: var(--text-dark) !important;
+        border: 1px solid #E0E0E0;
+    }
+
+#action-buttons .btn-primary-custom {
+    background-color: var(--accent-green);
+    border-color: var(--accent-green);
+    box-shadow: 0 3px 8px rgba(var(--accent-green-rgb),0.3);
+}
+
+    #action-buttons .btn-primary-custom:hover {
+        background-color: var(--accent-green-darker);
+        box-shadow: 0 5px 12px rgba(var(--accent-green-rgb),0.4);
+    }
+
+#action-buttons .btn-outline-pink-custom {
+    color: var(--accent-orange);
+    border-color: var(--accent-orange);
+}
+
+    #action-buttons .btn-outline-pink-custom:hover {
+        background-color: var(--accent-orange);
+        color: var(--text-light);
+    }
+
+.card-item-custom {
+    background: var(--text-light);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow-light);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .card-item-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--box-shadow-medium);
+    }
+
+    .card-item-custom .card-body {
+        padding: 1rem;
+    }
+
+    .card-item-custom .card-title {
+        color: var(--text-headings);
+        font-family: var(--font-main);
+        font-weight: 600;
+        font-size: 1.05rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .card-item-custom .text-muted-custom {
+        color: var(--text-muted-custom-color) !important;
+        font-size: 0.8rem;
+    }
+
+    .card-item-custom .btn-edit i, .card-item-custom .btn-del i { /* Стилі для іконок всередині кнопок */
+        font-size: 1rem; /* Розмір самих іконок */
+        vertical-align: middle;
+    }
+
+    .card-item-custom .btn-edit i {
+        color: var(--accent-green);
+    }
+
+    .card-item-custom .btn-del i {
+        color: var(--accent-orange);
+    }
+
+    .card-item-custom .btn-edit:hover i {
+        color: var(--accent-green-darker);
+    }
+
+    .card-item-custom .btn-del:hover i {
+        color: var(--accent-orange-darker);
+    }
+
+    .card-item-custom .btn {
+        padding: 0.25rem 0.5rem;
+        line-height: 1;
+        border-radius: 4px;
+        background: transparent;
+        border: 1px solid transparent;
+    }
+
+        .card-item-custom .btn:hover {
+            background-color: rgba(0,0,0,0.03); /* Легкий фон при наведенні на кнопку */
+        }
+
+footer {
+    width: 100%;
+    max-width: 1140px;
+    margin: 2.5rem auto 0 auto;
+    padding: 1.5rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-text-custom {
+    color: var(--text-medium) !important;
+    font-size: 0.85rem;
+}
+
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.decorative-element {
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.08;
+}
+
+.deco-leaf-1 {
+    width: 200px;
+    top: 5%;
+    left: 2%;
+    transform: rotate(-20deg);
+}
+
+.deco-leaf-2 {
+    width: 150px;
+    bottom: 5%;
+    right: 3%;
+    transform: rotate(15deg) scaleX(-1);
+}
+
+.deco-splash-1 {
+    width: 300px;
+    top: 50%;
+    left: -50px;
+    transform: translateY(-50%) rotate(20deg);
+    opacity: 0.06;
+}
+
+.deco-splash-2 {
+    width: 250px;
+    top: 20%;
+    right: -40px;
+    transform: rotate(-15deg);
+    opacity: 0.05;
 }

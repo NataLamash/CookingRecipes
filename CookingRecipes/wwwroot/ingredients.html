@@ -3,54 +3,67 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Інгредієнти</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-..."
-          crossorigin="anonymous" />
-    <!-- Ваші кастомні стилі -->
+    <title>Інгредієнти - Miss Matcha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/site.css" />
 </head>
-<body class="bg-light">
-    <!-- Навігація -->
-    <nav class="navbar navbar-light bg-white shadow-sm mb-4">
-        <div class="container d-flex align-items-center">
-            <a class="btn btn-link" href="index.html">&larr; Головна</a>
-            <input id="search-input"
-                   class="form-control mx-3"
-                   style="max-width: 300px;"
-                   type="search"
-                   placeholder="Пошук..." />
-            <button id="btn-add-ingredient" class="btn btn-outline-primary ms-auto">
-                ➕ Інгредієнти
-            </button>
-        </div>
-    </nav>
+<body>
+    <!-- Декоративні елементи (залиште або змініть шляхи на свої) -->
+    <img src="https://via.placeholder.com/250/F080A0/FFFFFF?Text=Splash1" alt="" class="decorative-element deco-splash-1" style="top: 5%; right: 5%;">
+    <img src="https://via.placeholder.com/200/A3C976/FFFFFF?Text=Splash2" alt="" class="decorative-element deco-splash-2" style="bottom: 5%; left: 5%;">
 
-    <main class="container">
-        <!-- Форма додавання -->
-        <div id="form-add" class="hidden mb-4">
-            <div class="input-group">
-                <input id="new-names"
-                       type="text"
-                       class="form-control"
-                       placeholder="куряче філе – 300, ананас – 400, …" />
-                <button id="submit-add" class="btn btn-primary">Додати</button>
+    <header class="banner-custom">
+        <div class="container">
+            <div class="site-logo-container">
+                <h1 class="site-logo-text">MISS MATCHA</h1>
+                <i class="bi bi-heart-fill site-logo-heart"></i>
             </div>
         </div>
+    </header>
 
-        <!-- Сітка карток інгредієнтів -->
-        <div id="cards-container" class="row g-4">
-            <!-- JS тут створить колонки з картками -->
-        </div>
-    </main>
+    <div class="main-glass-container">
+ 
+        <nav class="page-controls-nav">
+            <div class="controls-row">
+                <a class="btn-back-link" href="index.html"><i class="bi bi-arrow-left-circle-fill"></i> Головна</a>
+                <div class="search-input-wrapper">
+                    <input id="search-input"
+                           class="form-control"
+                           type="search"
+                           placeholder="Пошук інгредієнта..." />
+                </div>
+                <button id="btn-add-ingredient" class="btn btn-add-action">
+                    <i class="bi bi-plus-lg"></i> Додати Інгредієнти
+                </button>
+            </div>
+        </nav>
+        <!-- КІНЕЦЬ ЗАМІНИ -->
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-..."
-            crossorigin="anonymous"></script>
-    <!-- Логіка роботи інгредієнтів -->
+        <main class="container">
+            <!-- Цей .container може бути зайвим, якщо .page-controls-nav і наступні блоки вже мають свою структуру -->
+            <!-- або потрібен для центрування блоків форми та карток, якщо вони не на всю ширину -->
+            <div id="form-add" class="hidden mb-4">
+                <!-- Додав mb-4 для відступу -->
+                <div class="input-group">
+                    <input id="new-names"
+                           type="text"
+                           class="form-control"
+                           placeholder="назва - калорії, назва - калорії, …" />
+                    <button id="submit-add" class="btn btn-primary">Додати</button>
+                </div>
+            </div>
+            <div id="cards-container" class="row g-4">
+                <!-- JS тут створить колонки з картками -->
+            </div>
+        </main>
+    </div>
+
+    <footer class="text-center">
+        <p class="footer-text-custom">© 2023 Miss Matcha Recipes. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

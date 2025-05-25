@@ -4,27 +4,23 @@ namespace CookingRecipes.Models.Dtos
 {
     public class CreateRecipeDto
     {
-        [Required, StringLength(255)]
-        public string Title { get; set; } = null!;
-
+        [Required]
         [StringLength(255)]
-        public string? ImageUrl { get; set; }
+        public string Title { get; set; } = null!;
 
         [Required]
         public string Instructions { get; set; } = null!;
 
-        [Range(0, 1000)]
+        [Required]
+        [Range(0, int.MaxValue)]
         public int PreparationTime { get; set; }
 
-        public bool? IsVegetarian { get; set; }
-        public bool? IsDrink { get; set; }
+        public bool IsVegetarian { get; set; }
+        public bool IsDrink { get; set; }
 
-        /// <summary>
-        /// Список інгредієнтів із вагою
-        /// </summary>
-        [Required]
-        public List<RecipeIngredientInputDto> Ingredients { get; set; } = new();
+        public List<int> CategoryIds { get; set; } = new List<int>();
+        public List<RecipeIngredientInputDto> Ingredients { get; set; } = new List<RecipeIngredientInputDto>();
 
-        public List<int> CategoryIds { get; set; } = new();
+        public IFormFile? ImageFile { get; set; } // Додана властивість
     }
 }
