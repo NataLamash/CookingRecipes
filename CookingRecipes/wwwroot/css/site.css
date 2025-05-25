@@ -1,0 +1,35 @@
+﻿
+/* Загальні стилі */
+body {
+    background-color: #f8f9fa; /* світло-сірий фон */
+}
+
+/* Банер */
+header {
+    background-color: #fff;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Стилі для головних карток на index.html */
+.card-main {
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+
+    .card-main:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+/* Відступи для форм додавання */
+#form-add,
+#ingredient-form {
+    margin-bottom: 1.5rem;
+}
+
+/* Утиліта для приховання/показу блоків */
+.hidden {
+    display: none;
+}
